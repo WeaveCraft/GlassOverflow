@@ -9,12 +9,16 @@
         this.overflowSimulator = new OverflowSimulator(MAX_ROWS);
     }
 
+    /*
+     * Runs the program, which entails asking the user for a row and a glass-position and printing the time the
+     * corresponding glass takes to fill.
+     */
     public void Run()
     {
-        string quit = null;
+        string quit;
+        int row = -1;
         do
         {
-            int row = -1;
             do
             {
                 Console.Write("Rad ? (2-" + MAX_ROWS + ") ");
@@ -36,6 +40,15 @@
         } while (!quit.Equals("j", StringComparison.OrdinalIgnoreCase));
     }
 
+    /*
+     * Accepts and validates an input to the scanner to confirm that it is an integer and that it falls within the
+     * desired range.
+     *
+     *   min - The lowest acceptable integer input.
+     *   max - The highest acceptable integer input.
+     *
+     *   returns - The integer input if it is valid; -1 otherwise.
+     */
     private int ValidateIntegerInput(int min, int max)
     {
         if (int.TryParse(Console.ReadLine(), out int input))

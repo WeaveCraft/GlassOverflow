@@ -1,4 +1,8 @@
-﻿public class OverflowSimulator
+﻿    /*
+     * Class which simulates a pyramid of glasses where water is poured into the top glass and then gradually trickles down
+     * to the lower glasses, further and further as each glass fills up and overflows.
+     */
+public class OverflowSimulator
 {
     private int maxRows;
     private double maxWater;
@@ -13,6 +17,10 @@
         Setup();
     }
 
+    /*
+     * Creates and initializes a data structure that simulates the glass pyramid. Optionally may also pre-compute fill
+     * times for each glass and store in a second data structure.
+     */
     private void Setup()
     {
         for (int r = 0; r < maxRows; r++)
@@ -26,6 +34,12 @@
         }
     }
 
+    /*
+     * Calculates the total amount of water required to fill every glass. It's based on the amount of water
+     * required to fill the glasses at the corners of the final row, which take the longest.
+     *
+     *   rows - The number of rows in the glass pyramid.
+     */
     private double CalcMaxWater(int rows)
     {
         double maxWater = 0.0;
@@ -36,6 +50,10 @@
         return maxWater;
     }
 
+
+    /*
+     * Resets the water in each glass to 0 in between runs of the simulation.
+     */
     private void ResetWaterPerGlass()
     {
         for (int r = 0; r < maxRows; r++)
@@ -47,6 +65,13 @@
         }
     }
 
+    /*
+     * Calculates the time it takes for a given glass to fill up.
+     *   row - The row of the glass.
+     *   glass - The position of the glass on its row.
+     *
+     *   returns - The time (in seconds) it takes for the glass to fill up, with a margin of error of +- 0.001 seconds.
+     */
     public double GetFillTime(int row, int glass)
     {
         double lowerBound = 0.0;
